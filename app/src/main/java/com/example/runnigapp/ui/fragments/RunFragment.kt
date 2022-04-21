@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.runnigapp.R
+import com.example.runnigapp.adapters.RunAdapter
 import com.example.runnigapp.databinding.FragmentRunBinding
 import com.example.runnigapp.other.TrackingUtility
 import com.example.runnigapp.ui.viewmodels.MainViewModel
@@ -24,6 +25,8 @@ class RunFragment : Fragment(R.layout.fragment_run) {
     private var _binding: FragmentRunBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var runAdapter: RunAdapter
+
     private val requestPermissionLauncher =
         registerForActivityResult(RequestMultiplePermissions()) { permissions ->
 //            permissions.entries.forEach {
@@ -35,12 +38,22 @@ class RunFragment : Fragment(R.layout.fragment_run) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRunBinding.bind(view)
+        setUpRecyclerView()
+
+        viewModel.runsSortedByDate.observe(viewLifecycleOwner){
+            runAdapter.submitList(it)
+        }
+
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_runFragment_to_trackingFragment)
         }
         requestPermissions()
     }
 
+    private fun setUpRecyclerView() = binding.rvRuns.apply {
+        runAdapter = RunAdapter()
+        adapter = runAdapter
+    }
     private fun requestPermissions() {
         when {
             TrackingUtility.hasLocationPermissions(requireContext()) -> {
