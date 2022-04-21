@@ -1,5 +1,7 @@
 package com.example.runnigapp.other
 
+import android.graphics.Color
+
 object Constants {
     const val RUNNING_DATABASE_NAME = "running_db"
     const val REQUEST_CODE_LOCATION_PERMISSION = 0
@@ -15,4 +17,9 @@ object Constants {
     const val NOTIFICATION_CHANNEL_ID = "tracking_channel"
     const val NOTIFICATION_CHANNEL_NAME = "Tracking"
     const val NOTIFICATION_ID = 1 // use values > 0
+
+    const val POLYLINE_COLOR = Color.RED
+    const val POLYLINE_WIDTH = 8f
+    const val MAP_ZOOM = 18f
+    const val  TIMER_UPDATE_INTERVAL = 50L
 }

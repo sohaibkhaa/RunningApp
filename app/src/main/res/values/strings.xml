@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">RunnigApp</string>
-    <string name="google_maps_key"></string>
+    <string name="google_maps_key">YOUR API KEY HERE</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="filter_options">
