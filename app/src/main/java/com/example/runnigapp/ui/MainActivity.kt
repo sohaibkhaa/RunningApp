@@ -19,6 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @Inject
+    lateinit var name: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         navigateToTrackingFragmentIfNeeded(intent) //it will be called when activity is destroyed
 
         setSupportActionBar(binding.toolbar)
+        binding.tvToolbarTitle.text = "Let's go, ${name}"
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -46,10 +51,11 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         navigateToTrackingFragmentIfNeeded(intent) //will be called when activity is not destroyed
     }
-    private fun navigateToTrackingFragmentIfNeeded (intent: Intent?){
-        if (intent?.action == ACTION_SHOW_TRACKING_FRAGMENT){
+
+    private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
+        if (intent?.action == ACTION_SHOW_TRACKING_FRAGMENT) {
             val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+                supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
             val navController = navHostFragment.navController
             navController.navigate(R.id.action_global_tracking_fragment)
         }
