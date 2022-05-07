@@ -10,6 +10,7 @@ An Android Application written purely in Kotlin.<br>The project uses MVVM achite
 * Coroutines
 * Navigation Component
 * Dagger Hilt
+* Room
 * MPAndroidChart
 * Glide
 * LiveData
