@@ -16,3 +16,7 @@ An Android Application written purely in Kotlin.<br>The project uses MVVM achite
 * ViewBinding
 * Google Maps
 * Timber
+
+### How to Run?
+1. Get your Google Maps Api key from [Google Cloud Platform](https://console.cloud.google.com/)
+2. Insert Api key in res -> values -> strings **YOUR API KEY HERE**
